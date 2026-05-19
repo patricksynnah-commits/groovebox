@@ -1,0 +1,30 @@
+// Version: 1.0.0
+type ExternalBlob__671167343 = Blob;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Playlist__589961974 = {id : Nat; var name : Text; var trackIds : [Nat]};
+type Track__962864779 =
+  {
+    var artist : Text;
+    var blob : ExternalBlob__671167343;
+    var duration : Nat;
+    id : Nat;
+    var title : Text
+  };
+actor {
+  stable libraryState : {var nextTrackId : Nat};
+  stable playlistState : {var nextPlaylistId : Nat};
+  stable playlists :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Playlist__589961974]];
+      var elementIndex : Nat__490723111
+    };
+  stable session : {var lastPosition : Nat; var lastTrackId : ?Nat};
+  stable tracks :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Track__962864779]];
+      var elementIndex : Nat__490723111
+    }
+};

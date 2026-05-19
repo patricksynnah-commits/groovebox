@@ -1,0 +1,26 @@
+{
+  "overview": "A professional offline music player with Spotify-dark style. Upload your own music files and enjoy full playback controls, playlists, a live queue, and session persistence — all from your browser on any device.",
+  "features": [
+    "Upload MP3, WAV, OGG, M4A audio files",
+    "Play/pause, next/previous, seek bar, volume control",
+    "Shuffle and repeat modes (off/all/one)",
+    "Create, rename, and delete playlists",
+    "Add/remove tracks from playlists",
+    "Visible playback queue with drag-to-reorder",
+    "Now playing card with album art placeholder",
+    "IndexedDB persistence across sessions",
+    "Spotify-modern dark theme",
+    "Fully responsive for Android and desktop browsers"
+  ],
+  "category": "productivity",
+  "tags": [
+    "music",
+    "player",
+    "offline",
+    "audio",
+    "playlists",
+    "mobile",
+    "responsive"
+  ],
+  "last_updated": "2026-05-19T10:50:38.977Z"
+}

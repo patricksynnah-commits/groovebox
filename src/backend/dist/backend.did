@@ -1,0 +1,58 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type TrackInfo = 
+ record {
+   artist: text;
+   "blob": ExternalBlob;
+   duration: nat;
+   id: nat;
+   title: text;
+ };
+type SessionInfo = 
+ record {
+   lastPosition: nat;
+   lastTrackId: opt nat;
+ };
+type PlaylistInfo = 
+ record {
+   id: nat;
+   name: text;
+   trackIds: vec nat;
+ };
+type ExternalBlob = blob;
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  addTrack: (title: text, artist: text, duration: nat, "blob":
+   ExternalBlob) -> (TrackInfo);
+  addTrackToPlaylist: (playlistId: nat, trackId: nat) -> (bool);
+  createPlaylist: (name: text) -> (PlaylistInfo);
+  deletePlaylist: (id: nat) -> (bool);
+  deleteTrack: (id: nat) -> (bool);
+  getPlaylist: (id: nat) -> (opt PlaylistInfo) query;
+  getSession: () -> (SessionInfo) query;
+  getTrack: (id: nat) -> (opt TrackInfo) query;
+  listPlaylists: () -> (vec PlaylistInfo) query;
+  listTracks: () -> (vec TrackInfo) query;
+  removeTrackFromPlaylist: (playlistId: nat, trackId: nat) -> (bool);
+  renamePlaylist: (id: nat, name: text) -> (bool);
+  saveSession: (lastTrackId: opt nat, lastPosition: nat) -> ();
+}
